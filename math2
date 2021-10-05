@@ -1,0 +1,16 @@
+#define ll long long int
+ll mod = 1000000007;
+ll power(ll a, ll b){
+    if(b==0) return 1;
+    ll temp = power(a, b/2);
+    if(b%2==0) return (temp*temp)%mod;
+    return (a*temp*temp)%mod;
+}
+
+int Solution::solve(vector<int> &A) {
+    int n = A.size();
+    int ans = power(2,n);
+    ans %= mod;
+    ans = (ans-1)%mod;
+    return ans;
+}

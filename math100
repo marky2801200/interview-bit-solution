@@ -1,0 +1,35 @@
+int Solution::solve(vector<int> &A, vector<int> &B) {
+    
+  int n = A.size();
+  vector<int>index(n+1);
+  vector<int>a(n+1);
+  vector<int>b(n+1);
+  for(int i=1;i<=n;i++)
+  {
+    a[i]=A[i-1];
+    b[i]=B[i-1];
+    index[a[i]]=i;
+  }
+  int flag=0;
+  int ans=0;
+  for(int i=n;i>=1;i--)
+  {
+    if(index[i]==i)continue;
+    int temp = index[i];
+    int gap = i-index[i];
+    if(gap<0 || b[i]<gap)
+    {
+      flag=1;
+      break;
+    }
+    b[i]-=gap;
+    ans+=gap;
+    for(int j=temp;j<i;j++)
+    {
+      swap(a[j],a[j+1]);
+      swap(index[a[j]],index[a[j+1]]);
+    }
+  }
+  if(flag)return -1;
+  return ans;
+}

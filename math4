@@ -1,0 +1,21 @@
+vector<vector<int> > Solution::solve(vector<int> &A, vector<int> &B) {
+    int n=A.size();
+    for(int i=0;i<n;i++)
+    {
+        A.push_back(A[i]);
+    }
+    vector<vector<int>>res;
+    for(int i=0;i<B.size();i++)
+    {
+        int x=B[i];
+        x=x%n;
+        vector<int>temp;
+        for(int j=0;j<n;j++)
+        {
+            temp.push_back(A[x]);
+            x++;
+        }
+        res.push_back(temp);
+    }
+    return res;
+}
